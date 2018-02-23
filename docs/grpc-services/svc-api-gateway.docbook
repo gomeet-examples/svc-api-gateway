@@ -38,7 +38,7 @@
               <entry>content</entry>
               <entry><link linkend="string">string</link></entry>
               <entry></entry>
-              <entry><para>some content</para></entry>
+              <entry><para>some content // note : lorem.string => generate a random sentence 3 to 11 words in length</para></entry>
             </row>
             
           </tbody>

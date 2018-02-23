@@ -44,7 +44,7 @@ EchoRequest represents a simple message sent to the Echo service.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | uuid | [string](#string) |  | Uuid represents the message identifier. |
-| content | [string](#string) |  | some content |
+| content | [string](#string) |  | some content // note : lorem.string =&gt; generate a random sentence 3 to 11 words in length |
 
 
 

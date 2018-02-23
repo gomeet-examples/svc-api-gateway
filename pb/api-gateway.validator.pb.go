@@ -57,7 +57,16 @@ func (this *ServicesStatusList) Validate() error {
 	}
 	return nil
 }
+
+var _regex_EchoRequest_Uuid = regexp.MustCompile("^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$")
+
 func (this *EchoRequest) Validate() error {
+	if !_regex_EchoRequest_Uuid.MatchString(this.Uuid) {
+		return go_proto_validators.FieldError("Uuid", fmt.Errorf(`value '%v' must be a string conforming to regex "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$"`, this.Uuid))
+	}
+	if !(len(this.Content) > 3) {
+		return go_proto_validators.FieldError("Content", fmt.Errorf(`value '%v' must length be greater than '3'`, this.Content))
+	}
 	return nil
 }
 func (this *EchoResponse) Validate() error {
