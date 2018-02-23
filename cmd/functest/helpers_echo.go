@@ -7,10 +7,12 @@ import (
 func testGetEchoRequest(
 	config FunctionalTestConfig,
 ) (reqs []*pb.EchoRequest, extras map[string]interface{}, err error) {
+	// TODO
+
 	// return an array of pb.EchoRequest struct pointers,
 	// each of them will be passed as an argument to the grpc Echo method
 
-	reqs = append(reqs, &pb.EchoRequest{})
+	//reqs = append(reqs, &pb.EchoRequest{})
 	return reqs, extras, err
 }
 
@@ -20,6 +22,8 @@ func testEchoResponse(
 	testCaseResults []*TestCaseResult,
 	extras map[string]interface{},
 ) (failures []TestFailure) {
+	// TODO
+
 	// Do something useful functional test with
 	// testCaseResults[n].Request, testCaseResults[n].Response and testCaseResults[n].Error
 	// then return a array of TestFailure struct

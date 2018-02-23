@@ -133,14 +133,14 @@ func (svc Service) RegisterHTTPServices(ctx context.Context, mux *mux.Router, ad
 	// it's not necessary to use secure middleware for gRPC calls
 	// api gateway handlers with metrics instrumentations
 	routeMap := map[string]string{
-		"/api/v1/profile/read":    "Api.ReadProfile",
-		"/api/v1/profile/list":    "Api.ListProfile",
 		"/api/v1/profile/update":  "Api.UpdateProfile",
-		"/api/v1/profile/delete":  "Api.DeleteProfile",
 		"/api/v1/services/status": "Api.ServicesStatus",
 		"/api/v1/profile/create":  "Api.CreateProfile",
-		"/api/v1/version":         "Api.Version",
+		"/api/v1/profile/read":    "Api.ReadProfile",
+		"/api/v1/profile/list":    "Api.ListProfile",
+		"/api/v1/profile/delete":  "Api.DeleteProfile",
 		"/api/v1/echo":            "Api.Echo",
+		"/api/v1/version":         "Api.Version",
 	}
 	for route, label := range routeMap {
 		mux.PathPrefix(route).Handler(instrf(label, gwmux.ServeHTTP))
