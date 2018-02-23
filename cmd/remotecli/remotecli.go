@@ -112,6 +112,11 @@ func (c *remoteCli) GetActionsMap() map[string]func([]string) (string, error) {
 		"version":         c.cmdVersion,
 		"services_status": c.cmdServicesStatus,
 		"echo":            c.cmdEcho,
+		"create_profile":  c.cmdCreateProfile,
+		"read_profile":    c.cmdReadProfile,
+		"list_profile":    c.cmdListProfile,
+		"update_profile":  c.cmdUpdateProfile,
+		"delete_profile":  c.cmdDeleteProfile,
 		// global method
 		"console_version": c.cmdConsoleVersion,
 		"jwt":             c.cmdJWT,

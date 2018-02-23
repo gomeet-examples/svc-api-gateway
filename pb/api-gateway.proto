@@ -31,13 +31,54 @@ service ApiGateway {
     };
   }
 
-  // Echo method receives a simple message and returns it.
+  // Echo method receives a simple message and returns it from svc-echo.
   rpc Echo(EchoRequest) returns (EchoResponse) {
     option (google.api.http) = {
       post: "/api/v1/echo"
       body: "*"
     };
   }
+
+  // CreateProfile attempts to create a new profile via svc-profile.
+  rpc CreateProfile(ProfileCreationRequest) returns (ProfileResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/profile/create"
+      body: "*"
+    };
+  }
+
+  // ReadProfile returns information about an existing profile via svc-profile.
+  rpc ReadProfile(ProfileRequest) returns (ProfileInfo) {
+    option (google.api.http) = {
+      post: "/api/v1/profile/read"
+      body: "*"
+    };
+  }
+
+  // ListProfile returns a list of profiles matching a set of criteria via svc-profile.
+  rpc ListProfile(ProfileListRequest) returns (ProfileList) {
+    option (google.api.http) = {
+      post: "/api/v1/profile/list"
+      body: "*"
+    };
+  }
+
+  // UpdateProfile attempts to update an existing profile via svc-profile.
+  rpc UpdateProfile(ProfileInfo) returns (ProfileResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/profile/update"
+      body: "*"
+    };
+  }
+
+  // DeleteProfile attempts to delete (logically) an existing profile via svc-profile.
+  rpc DeleteProfile(ProfileRequest) returns (ProfileResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/profile/delete"
+      body: "*"
+    };
+  }
+
 }
 
 message EmptyMessage {}
@@ -76,4 +117,60 @@ message EchoRequest {
 message EchoResponse {
   string uuid    = 1 [(gomeetfaker.field).uuid.version = "V4"]; // Uuid represents the message identifier.
   string content = 2 [(gomeetfaker.field).lorem.string = true]; // some content
+}
+
+// Profile's messages
+
+enum Genders {
+  UNKNOW = 0; // normaly never
+  MALE   = 1; // male gender
+  FEMALE = 2; // female gender
+}
+
+// ProfileInfo encodes information about a profile.
+message ProfileInfo {
+  string  uuid       = 1 [(gomeetfaker.field).uuid.version = "V4", (validator.field) = {regex: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$"}]; // internal profile ID
+  Genders gender     = 2 [(gomeetfaker.field).enum.random_no_empty = true]; // profile role
+  string  email      = 3 [(gomeetfaker.field).internet.email = true, (validator.field) = {regex: "^[a-zA-Z0-9.!#$%&'*+/=?^_{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"}]; // profile email
+  string  name       = 4 [(gomeetfaker.field).internet.user_name = true, (validator.field) = {length_gt: 1, length_lt: 151}]; // profile name
+  string  birthday   = 5 [(gomeetfaker.field).time.birthday = {min: 17, max: 99}, (validator.field) = {regex: "^(19|20)\\d\\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$"}]; // profile birthday
+  string  created_at = 6 [(gomeetfaker.field).date = {now: true, format: "2006-01-02T15:04:05Z07:00"}]; // creation time (UTC - RFC 3339 format)
+  string  updated_at = 7 [(gomeetfaker.field).date = {now: true, format: "2006-01-02T15:04:05Z07:00"}]; // modification time (UTC - RFC 3339 format)
+  string  deleted_at = 8 [(gomeetfaker.field).date = {now: true, format: "2006-01-02T15:04:05Z07:00"}]; // deletion time (UTC - RFC 3339 format if the profile was logically deleted, empty otherwise)
+}
+
+// ProfileRequest encodes a profile identifier.
+message ProfileRequest {
+  string uuid = 1 [(gomeetfaker.field).uuid.version = "V4", (validator.field) = {regex: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$"}]; // profile ID
+}
+
+// ProfileResponse encodes the result of a profile operation.
+message ProfileResponse {
+  bool        ok   = 1 [(gomeetfaker.field).value.content = "1"]; // indicates whether the operation (authentication, creation, update or delete) was successful
+  ProfileInfo info = 2;                                           // profile information (unreliable if the operation failed)
+}
+
+// ProfileCreationRequest encodes a profile creation request.
+message ProfileCreationRequest {
+  Genders gender     = 1 [(gomeetfaker.field).enum.random_no_empty = true];                                                                                                                                                                // profile role
+  string  email      = 2 [(gomeetfaker.field).internet.email = true, (validator.field) = {regex: "^[a-zA-Z0-9.!#$%&'*+/=?^_{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"}]; // profile email
+  string  name       = 3 [(gomeetfaker.field).internet.user_name = true, (validator.field) = {length_gt: 1, length_lt: 151}];                                                                                                           // profile name
+  string  birthday   = 4 [(gomeetfaker.field).time.birthday = {min: 17, max: 99}, (validator.field) = {regex: "^(19|20)\\d\\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$"}];                                                      // profile birthday
+}
+
+// ProfileListRequest encodes a set of criteria for the retrieval of a list of profiles.
+message ProfileListRequest {
+  uint32  page_number          = 1 [(gomeetfaker.field).value.content = "1", (validator.field).int_gt = 0];                    // page number (starting from 1)
+  uint32  page_size            = 2 [(gomeetfaker.field).value.content = "200", (validator.field) = {int_gt: 0, int_lt: 1001}]; // number of results in a page
+  string  order                = 3 [(gomeetfaker.field).value.content = "created_at asc"];                                     // result ordering specification (default "created_at asc")
+	bool    exclude_soft_deleted = 4 [(gomeetfaker.field).value.content = "true"];                                               // if true, excludes logically-deleted profiles from the result set
+	bool    soft_deleted_only    = 5 [(gomeetfaker.field).value.content = "false"];                                              // if true, restricts the result set to logically-deleted profiles
+  Genders gender               = 6 [(gomeetfaker.field).enum.random_no_empty = true];                                          // role to search for
+}
+
+// ProfileList encodes the result of a ProfileListRequest.
+message ProfileList {
+  uint32               result_set_size = 1 [(gomeetfaker.field).value.content = "5"];     // total number of results
+  bool                 has_more        = 2 [(gomeetfaker.field).value.content = "false"]; // true if there are more results for the ProfileListRequest
+  repeated ProfileInfo profiles        = 3 [(gomeetfaker.field).repeated = 5];            // list of ProfileInfo messages
 }

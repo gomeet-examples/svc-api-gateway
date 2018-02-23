@@ -191,6 +191,30 @@
                 </li>
               
                 <li>
+                  <a href="#grpc.gomeetexamples.apigateway.ProfileCreationRequest"><span class="badge">M</span>ProfileCreationRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#grpc.gomeetexamples.apigateway.ProfileInfo"><span class="badge">M</span>ProfileInfo</a>
+                </li>
+              
+                <li>
+                  <a href="#grpc.gomeetexamples.apigateway.ProfileList"><span class="badge">M</span>ProfileList</a>
+                </li>
+              
+                <li>
+                  <a href="#grpc.gomeetexamples.apigateway.ProfileListRequest"><span class="badge">M</span>ProfileListRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#grpc.gomeetexamples.apigateway.ProfileRequest"><span class="badge">M</span>ProfileRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#grpc.gomeetexamples.apigateway.ProfileResponse"><span class="badge">M</span>ProfileResponse</a>
+                </li>
+              
+                <li>
                   <a href="#grpc.gomeetexamples.apigateway.ServiceStatus"><span class="badge">M</span>ServiceStatus</a>
                 </li>
               
@@ -202,6 +226,10 @@
                   <a href="#grpc.gomeetexamples.apigateway.VersionResponse"><span class="badge">M</span>VersionResponse</a>
                 </li>
               
+              
+                <li>
+                  <a href="#grpc.gomeetexamples.apigateway.Genders"><span class="badge">E</span>Genders</a>
+                </li>
               
                 <li>
                   <a href="#grpc.gomeetexamples.apigateway.ServiceStatus.Status"><span class="badge">E</span>ServiceStatus.Status</a>
@@ -291,6 +319,270 @@
         <h3 id="grpc.gomeetexamples.apigateway.EmptyMessage">EmptyMessage</h3>
         <p></p>
 
+        
+
+        
+      
+        <h3 id="grpc.gomeetexamples.apigateway.ProfileCreationRequest">ProfileCreationRequest</h3>
+        <p>ProfileCreationRequest encodes a profile creation request.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>gender</td>
+                  <td><a href="#grpc.gomeetexamples.apigateway.Genders">Genders</a></td>
+                  <td></td>
+                  <td><p>profile role </p></td>
+                </tr>
+              
+                <tr>
+                  <td>email</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>profile email </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>profile name </p></td>
+                </tr>
+              
+                <tr>
+                  <td>birthday</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>profile birthday </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+        
+
+        
+      
+        <h3 id="grpc.gomeetexamples.apigateway.ProfileInfo">ProfileInfo</h3>
+        <p>ProfileInfo encodes information about a profile.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>internal profile ID </p></td>
+                </tr>
+              
+                <tr>
+                  <td>gender</td>
+                  <td><a href="#grpc.gomeetexamples.apigateway.Genders">Genders</a></td>
+                  <td></td>
+                  <td><p>profile role </p></td>
+                </tr>
+              
+                <tr>
+                  <td>email</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>profile email </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>profile name </p></td>
+                </tr>
+              
+                <tr>
+                  <td>birthday</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>profile birthday </p></td>
+                </tr>
+              
+                <tr>
+                  <td>created_at</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>creation time (UTC - RFC 3339 format) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>updated_at</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>modification time (UTC - RFC 3339 format) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>deleted_at</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>deletion time (UTC - RFC 3339 format if the profile was logically deleted, empty otherwise) </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+        
+
+        
+      
+        <h3 id="grpc.gomeetexamples.apigateway.ProfileList">ProfileList</h3>
+        <p>ProfileList encodes the result of a ProfileListRequest.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>result_set_size</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>total number of results </p></td>
+                </tr>
+              
+                <tr>
+                  <td>has_more</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>true if there are more results for the ProfileListRequest </p></td>
+                </tr>
+              
+                <tr>
+                  <td>profiles</td>
+                  <td><a href="#grpc.gomeetexamples.apigateway.ProfileInfo">ProfileInfo</a></td>
+                  <td>repeated</td>
+                  <td><p>list of ProfileInfo messages </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+        
+
+        
+      
+        <h3 id="grpc.gomeetexamples.apigateway.ProfileListRequest">ProfileListRequest</h3>
+        <p>ProfileListRequest encodes a set of criteria for the retrieval of a list of profiles.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>page_number</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>page number (starting from 1) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>page_size</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>number of results in a page </p></td>
+                </tr>
+              
+                <tr>
+                  <td>order</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>result ordering specification (default &#34;created_at asc&#34;) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>exclude_soft_deleted</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>if true, excludes logically-deleted profiles from the result set </p></td>
+                </tr>
+              
+                <tr>
+                  <td>soft_deleted_only</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>if true, restricts the result set to logically-deleted profiles </p></td>
+                </tr>
+              
+                <tr>
+                  <td>gender</td>
+                  <td><a href="#grpc.gomeetexamples.apigateway.Genders">Genders</a></td>
+                  <td></td>
+                  <td><p>role to search for </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+        
+
+        
+      
+        <h3 id="grpc.gomeetexamples.apigateway.ProfileRequest">ProfileRequest</h3>
+        <p>ProfileRequest encodes a profile identifier.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>profile ID </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+        
+
+        
+      
+        <h3 id="grpc.gomeetexamples.apigateway.ProfileResponse">ProfileResponse</h3>
+        <p>ProfileResponse encodes the result of a profile operation.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>ok</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>indicates whether the operation (authentication, creation, update or delete) was successful </p></td>
+                </tr>
+              
+                <tr>
+                  <td>info</td>
+                  <td><a href="#grpc.gomeetexamples.apigateway.ProfileInfo">ProfileInfo</a></td>
+                  <td></td>
+                  <td><p>profile information (unreliable if the operation failed) </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
         
 
         
@@ -394,6 +686,35 @@
       
 
       
+        <h3 id="grpc.gomeetexamples.apigateway.Genders">Genders</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>UNKNOW</td>
+                <td>0</td>
+                <td><p>normaly never</p></td>
+              </tr>
+            
+              <tr>
+                <td>MALE</td>
+                <td>1</td>
+                <td><p>male gender</p></td>
+              </tr>
+            
+              <tr>
+                <td>FEMALE</td>
+                <td>2</td>
+                <td><p>female gender</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
         <h3 id="grpc.gomeetexamples.apigateway.ServiceStatus.Status">ServiceStatus.Status</h3>
         <p></p>
         <table class="enum-table">
@@ -447,7 +768,42 @@
                 <td>Echo</td>
                 <td><a href="#grpc.gomeetexamples.apigateway.EchoRequest">EchoRequest</a></td>
                 <td><a href="#grpc.gomeetexamples.apigateway.EchoResponse">EchoResponse</a></td>
-                <td><p>Echo method receives a simple message and returns it.</p></td>
+                <td><p>Echo method receives a simple message and returns it from svc-echo.</p></td>
+              </tr>
+            
+              <tr>
+                <td>CreateProfile</td>
+                <td><a href="#grpc.gomeetexamples.apigateway.ProfileCreationRequest">ProfileCreationRequest</a></td>
+                <td><a href="#grpc.gomeetexamples.apigateway.ProfileResponse">ProfileResponse</a></td>
+                <td><p>CreateProfile attempts to create a new profile via svc-profile.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ReadProfile</td>
+                <td><a href="#grpc.gomeetexamples.apigateway.ProfileRequest">ProfileRequest</a></td>
+                <td><a href="#grpc.gomeetexamples.apigateway.ProfileInfo">ProfileInfo</a></td>
+                <td><p>ReadProfile returns information about an existing profile via svc-profile.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListProfile</td>
+                <td><a href="#grpc.gomeetexamples.apigateway.ProfileListRequest">ProfileListRequest</a></td>
+                <td><a href="#grpc.gomeetexamples.apigateway.ProfileList">ProfileList</a></td>
+                <td><p>ListProfile returns a list of profiles matching a set of criteria via svc-profile.</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateProfile</td>
+                <td><a href="#grpc.gomeetexamples.apigateway.ProfileInfo">ProfileInfo</a></td>
+                <td><a href="#grpc.gomeetexamples.apigateway.ProfileResponse">ProfileResponse</a></td>
+                <td><p>UpdateProfile attempts to update an existing profile via svc-profile.</p></td>
+              </tr>
+            
+              <tr>
+                <td>DeleteProfile</td>
+                <td><a href="#grpc.gomeetexamples.apigateway.ProfileRequest">ProfileRequest</a></td>
+                <td><a href="#grpc.gomeetexamples.apigateway.ProfileResponse">ProfileResponse</a></td>
+                <td><p>DeleteProfile attempts to delete (logically) an existing profile via svc-profile.</p></td>
               </tr>
             
           </tbody>

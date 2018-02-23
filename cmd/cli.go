@@ -23,6 +23,11 @@ Example :
   $ svc-api-gateway cli version
   $ svc-api-gateway cli services_status
   $ svc-api-gateway cli echo <uuid [string]> <content [string]>
+  $ svc-api-gateway cli create_profile <gender [UNKNOW|MALE|FEMALE]> <email [string]> <name [string]> <birthday [string]>
+  $ svc-api-gateway cli read_profile <uuid [string]>
+  $ svc-api-gateway cli list_profile <page_number [uint32]> <page_size [uint32]> <order [string]> <exclude_soft_deleted [bool]> <soft_deleted_only [bool]> <gender [UNKNOW|MALE|FEMALE]>
+  $ svc-api-gateway cli update_profile <uuid [string]> <gender [UNKNOW|MALE|FEMALE]> <email [string]> <name [string]> <birthday [string]> <created_at [string]> <updated_at [string]> <deleted_at [string]>
+  $ svc-api-gateway cli delete_profile <uuid [string]>
   $ svc-api-gateway cli --address localhost:42000 version
 
 `,
