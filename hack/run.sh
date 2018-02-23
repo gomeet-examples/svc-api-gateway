@@ -29,14 +29,20 @@ killgroup(){
 }
 
 # SUB-SERVICES DEFINITION : run.sh
-$GOPATH/src/github.com/gomeet-examples/svc-echo/_build/svc-echo \
-	serve \
+cd $GOPATH/src/github.com/gomeet-examples/svc-echo
+CGO_ENABLED=0 go run $GO_RUN_FLAGS \
+	-ldflags '-extldflags "-lm -lstdc++ -static"' \
+	-ldflags "-X gogs.skyrock.net/gomeet/gomeet-svc-bi/service.version=$(cat VERSION) -X gogs.skyrock.net/gomeet/gomeet-svc-bi/service.name=gomeet-svc-bi" \
+	main.go serve \
 		-d \
 		--jwt-secret "$GOMEET_JWT_SECRET" \
 		--address ":13001" &
 
-$GOPATH/src/github.com/gomeet-examples/svc-profile/_build/svc-profile \
-	serve \
+cd $GOPATH/src/github.com/gomeet-examples/svc-profile
+CGO_ENABLED=0 go run $GO_RUN_FLAGS \
+	-ldflags '-extldflags "-lm -lstdc++ -static"' \
+	-ldflags "-X gogs.skyrock.net/gomeet/gomeet-svc-bi/service.version=$(cat VERSION) -X gogs.skyrock.net/gomeet/gomeet-svc-bi/service.name=gomeet-svc-bi" \
+	main.go serve \
 		-d \
 		--jwt-secret "$GOMEET_JWT_SECRET" \
 		--mysql-migrate \
