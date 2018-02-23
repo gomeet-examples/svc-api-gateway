@@ -7,6 +7,8 @@ import (
 func testGetDeleteProfileRequest(
 	config FunctionalTestConfig,
 ) (reqs []*pb.ProfileRequest, extras map[string]interface{}, err error) {
+	// TODO
+
 	// return an array of pb.ProfileRequest struct pointers,
 	// each of them will be passed as an argument to the grpc DeleteProfile method
 
@@ -20,6 +22,8 @@ func testDeleteProfileResponse(
 	testCaseResults []*TestCaseResult,
 	extras map[string]interface{},
 ) (failures []TestFailure) {
+	// TODO
+
 	// Do something useful functional test with
 	// testCaseResults[n].Request, testCaseResults[n].Response and testCaseResults[n].Error
 	// then return a array of TestFailure struct
