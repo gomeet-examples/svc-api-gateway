@@ -7,10 +7,12 @@ import (
 func testGetListProfileRequest(
 	config FunctionalTestConfig,
 ) (reqs []*pb.ProfileListRequest, extras map[string]interface{}, err error) {
+	// TODO
+
 	// return an array of pb.ProfileListRequest struct pointers,
 	// each of them will be passed as an argument to the grpc ListProfile method
 
-	reqs = append(reqs, &pb.ProfileListRequest{})
+	//reqs = append(reqs, &pb.ProfileListRequest{})
 	return reqs, extras, err
 }
 
@@ -20,6 +22,8 @@ func testListProfileResponse(
 	testCaseResults []*TestCaseResult,
 	extras map[string]interface{},
 ) (failures []TestFailure) {
+	// TODO
+
 	// Do something useful functional test with
 	// testCaseResults[n].Request, testCaseResults[n].Response and testCaseResults[n].Error
 	// then return a array of TestFailure struct
