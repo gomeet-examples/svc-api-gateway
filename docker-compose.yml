@@ -119,7 +119,6 @@ services:
 
   console-echo:
     image: gomeetexamples/svc-echo:${TAG_SVC_ECHO}
-    image: gomeet/gomeet-svc-bi:${TAG_SVC_BI}
     command: console --address=svc-echo:13000
     depends_on:
       - svc-echo
@@ -128,7 +127,6 @@ services:
 
   console-profile:
     image: gomeetexamples/svc-profile:${TAG_SVC_PROFILE}
-    image: gomeet/gomeet-svc-bi:${TAG_SVC_BI}
     command: console --address=svc-profile:13000
     depends_on:
       - svc-profile
