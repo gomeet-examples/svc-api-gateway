@@ -1,4 +1,4 @@
-DEFAULT_PREFIXES=svc-,gomeet-svc-
+DEFAULT_PREFIXES=gomeet-svc-,svc-
 SVC_PREFIX=svc-
 NAME = $(SVC_PREFIX)api-gateway
 GO_PACKAGE_BASE = github.com/gomeet-examples
@@ -197,6 +197,7 @@ package-clean:
 .PHONY: package-proto
 package-proto:
 	@echo "$(NAME): package-proto task"
+	mkdir -p $(PACKAGE_DIR)
 	cp -r third_party $(PACKAGE_DIR)/proto
 	cp $(GO_PROTO_PACKAGE_ALIAS)/*.proto $(PACKAGE_DIR)/proto/
 	cp VERSION $(PACKAGE_DIR)/proto/
