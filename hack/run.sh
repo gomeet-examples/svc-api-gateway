@@ -32,7 +32,7 @@ killgroup(){
 cd $GOPATH/src/github.com/gomeet-examples/svc-echo
 CGO_ENABLED=0 go run $GO_RUN_FLAGS \
 	-ldflags '-extldflags "-lm -lstdc++ -static"' \
-	-ldflags "-X gogs.skyrock.net/gomeet/gomeet-svc-bi/service.version=$(cat VERSION) -X gogs.skyrock.net/gomeet/gomeet-svc-bi/service.name=gomeet-svc-bi" \
+	-ldflags "-X github.com/gomeet-examples/svc-echo/service.version=$(cat VERSION) -X github.com/gomeet-examples/svc-echo/service.name=gomeet-svc-echo" \
 	main.go serve \
 		-d \
 		--jwt-secret "$GOMEET_JWT_SECRET" \
@@ -41,7 +41,7 @@ CGO_ENABLED=0 go run $GO_RUN_FLAGS \
 cd $GOPATH/src/github.com/gomeet-examples/svc-profile
 CGO_ENABLED=0 go run $GO_RUN_FLAGS \
 	-ldflags '-extldflags "-lm -lstdc++ -static"' \
-	-ldflags "-X gogs.skyrock.net/gomeet/gomeet-svc-bi/service.version=$(cat VERSION) -X gogs.skyrock.net/gomeet/gomeet-svc-bi/service.name=gomeet-svc-bi" \
+	-ldflags "-X github.com/gomeet-examples/svc-profile/service.version=$(cat VERSION) -X github.com/gomeet-examples/svc-profile/service.name=svc-profile" \
 	main.go serve \
 		-d \
 		--jwt-secret "$GOMEET_JWT_SECRET" \
