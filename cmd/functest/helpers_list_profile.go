@@ -4,19 +4,19 @@ import (
 	pb "github.com/gomeet-examples/svc-api-gateway/pb"
 )
 
-func testGetEchoRequest(
+func testGetListProfileRequest(
 	config FunctionalTestConfig,
-) (reqs []*pb.EchoRequest, extras map[string]interface{}, err error) {
+) (reqs []*pb.ProfileListRequest, extras map[string]interface{}, err error) {
 	// TODO
 
-	// return an array of pb.EchoRequest struct pointers,
-	// each of them will be passed as an argument to the grpc Echo method
+	// return an array of pb.ProfileListRequest struct pointers,
+	// each of them will be passed as an argument to the grpc ListProfile method
 
-	//reqs = append(reqs, &pb.EchoRequest{})
+	//reqs = append(reqs, &pb.ProfileListRequest{})
 	return reqs, extras, err
 }
 
-func testEchoResponse(
+func testListProfileResponse(
 	config FunctionalTestConfig,
 	testsType string,
 	testCaseResults []*TestCaseResult,
@@ -30,25 +30,25 @@ func testEchoResponse(
 	// testsType value is value of FUNCTEST_HTTP (HTTP) and FUNCTEST_GRPC (GRPC) constants cf. types.go
 	for _, tr := range testCaseResults {
 		var (
-			req *pb.EchoRequest
-			res *pb.EchoResponse
+			req *pb.ProfileListRequest
+			res *pb.ProfileList
 			err error
 			ok  bool
 		)
 		if tr.Request == nil {
-			failures = append(failures, TestFailure{Procedure: "Echo", Message: "expected request message type pb.EchoRequest - nil given"})
+			failures = append(failures, TestFailure{Procedure: "ListProfile", Message: "expected request message type pb.ProfileListRequest - nil given"})
 			continue
 		}
-		req, ok = tr.Request.(*pb.EchoRequest)
+		req, ok = tr.Request.(*pb.ProfileListRequest)
 		if !ok {
-			failures = append(failures, TestFailure{Procedure: "Echo", Message: "expected request message type pb.EchoRequest - cast fail"})
+			failures = append(failures, TestFailure{Procedure: "ListProfile", Message: "expected request message type pb.ProfileListRequest - cast fail"})
 			continue
 		}
 
 		if tr.Response != nil {
-			res, ok = tr.Response.(*pb.EchoResponse)
+			res, ok = tr.Response.(*pb.ProfileList)
 			if !ok {
-				failures = append(failures, TestFailure{Procedure: "Echo", Message: "expected response message type pb.EchoRequest - cast fail"})
+				failures = append(failures, TestFailure{Procedure: "ListProfile", Message: "expected response message type pb.ProfileListRequest - cast fail"})
 				continue
 			}
 		}
@@ -57,7 +57,7 @@ func testEchoResponse(
 		err = tr.Error
 		if err != nil {
 			// if no error are expected do something like this
-			// failures = append(failures, TestFailure{Procedure: "Echo", Message: "no error expected"})
+			// failures = append(failures, TestFailure{Procedure: "ListProfile", Message: "no error expected"})
 			// continue
 		}
 
@@ -65,7 +65,7 @@ func testEchoResponse(
 			// for example :
 			// if res.GetId() != req.GetId() {
 			//     failureMsg := fmt.Sprintf("expected ID \"%s\" but got \"%s\" for request: %v", req.GetId(), res.GetId(), req)
-			//     failures = append(failures, TestFailure{Procedure: "Echo", Message: failureMsg})
+			//     failures = append(failures, TestFailure{Procedure: "ListProfile", Message: failureMsg})
 			// }
 		}
 	}

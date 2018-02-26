@@ -38,7 +38,7 @@
               <entry>content</entry>
               <entry><link linkend="string">string</link></entry>
               <entry></entry>
-              <entry><para>some content</para></entry>
+              <entry><para>some content // note : lorem.string => generate a random sentence 3 to 11 words in length</para></entry>
             </row>
             
           </tbody>
@@ -93,6 +93,342 @@
     <section id="grpc.gomeetexamples.apigateway.EmptyMessage">
       <title>EmptyMessage</title>
       <para></para>
+      
+      
+    </section>
+    
+    <section id="grpc.gomeetexamples.apigateway.ProfileCreationRequest">
+      <title>ProfileCreationRequest</title>
+      <para>ProfileCreationRequest encodes a profile creation request.</para>
+      
+      <table frame="all">
+        <title><classname>ProfileCreationRequest</classname> Fields</title>
+        <tgroup cols="4">
+          <colspec colwidth="*"/>
+          <colspec colwidth="*"/>
+          <colspec colwidth="0.5*"/>
+          <colspec colwidth="3*"/>
+          <thead>
+            <row>
+              <entry>Field</entry>
+              <entry>Type</entry>
+              <entry>Label</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            
+            <row>
+              <entry>gender</entry>
+              <entry><link linkend="grpc.gomeetexamples.apigateway.Genders">Genders</link></entry>
+              <entry></entry>
+              <entry><para>profile role</para></entry>
+            </row>
+            
+            <row>
+              <entry>email</entry>
+              <entry><link linkend="string">string</link></entry>
+              <entry></entry>
+              <entry><para>profile email</para></entry>
+            </row>
+            
+            <row>
+              <entry>name</entry>
+              <entry><link linkend="string">string</link></entry>
+              <entry></entry>
+              <entry><para>profile name</para></entry>
+            </row>
+            
+            <row>
+              <entry>birthday</entry>
+              <entry><link linkend="string">string</link></entry>
+              <entry></entry>
+              <entry><para>profile birthday</para></entry>
+            </row>
+            
+          </tbody>
+        </tgroup>
+      </table>
+      
+      
+    </section>
+    
+    <section id="grpc.gomeetexamples.apigateway.ProfileInfo">
+      <title>ProfileInfo</title>
+      <para>ProfileInfo encodes information about a profile.</para>
+      
+      <table frame="all">
+        <title><classname>ProfileInfo</classname> Fields</title>
+        <tgroup cols="4">
+          <colspec colwidth="*"/>
+          <colspec colwidth="*"/>
+          <colspec colwidth="0.5*"/>
+          <colspec colwidth="3*"/>
+          <thead>
+            <row>
+              <entry>Field</entry>
+              <entry>Type</entry>
+              <entry>Label</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            
+            <row>
+              <entry>uuid</entry>
+              <entry><link linkend="string">string</link></entry>
+              <entry></entry>
+              <entry><para>internal profile ID</para></entry>
+            </row>
+            
+            <row>
+              <entry>gender</entry>
+              <entry><link linkend="grpc.gomeetexamples.apigateway.Genders">Genders</link></entry>
+              <entry></entry>
+              <entry><para>profile role</para></entry>
+            </row>
+            
+            <row>
+              <entry>email</entry>
+              <entry><link linkend="string">string</link></entry>
+              <entry></entry>
+              <entry><para>profile email</para></entry>
+            </row>
+            
+            <row>
+              <entry>name</entry>
+              <entry><link linkend="string">string</link></entry>
+              <entry></entry>
+              <entry><para>profile name</para></entry>
+            </row>
+            
+            <row>
+              <entry>birthday</entry>
+              <entry><link linkend="string">string</link></entry>
+              <entry></entry>
+              <entry><para>profile birthday</para></entry>
+            </row>
+            
+            <row>
+              <entry>created_at</entry>
+              <entry><link linkend="string">string</link></entry>
+              <entry></entry>
+              <entry><para>creation time (UTC - RFC 3339 format)</para></entry>
+            </row>
+            
+            <row>
+              <entry>updated_at</entry>
+              <entry><link linkend="string">string</link></entry>
+              <entry></entry>
+              <entry><para>modification time (UTC - RFC 3339 format)</para></entry>
+            </row>
+            
+            <row>
+              <entry>deleted_at</entry>
+              <entry><link linkend="string">string</link></entry>
+              <entry></entry>
+              <entry><para>deletion time (UTC - RFC 3339 format if the profile was logically deleted, empty otherwise)</para></entry>
+            </row>
+            
+          </tbody>
+        </tgroup>
+      </table>
+      
+      
+    </section>
+    
+    <section id="grpc.gomeetexamples.apigateway.ProfileList">
+      <title>ProfileList</title>
+      <para>ProfileList encodes the result of a ProfileListRequest.</para>
+      
+      <table frame="all">
+        <title><classname>ProfileList</classname> Fields</title>
+        <tgroup cols="4">
+          <colspec colwidth="*"/>
+          <colspec colwidth="*"/>
+          <colspec colwidth="0.5*"/>
+          <colspec colwidth="3*"/>
+          <thead>
+            <row>
+              <entry>Field</entry>
+              <entry>Type</entry>
+              <entry>Label</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            
+            <row>
+              <entry>result_set_size</entry>
+              <entry><link linkend="uint32">uint32</link></entry>
+              <entry></entry>
+              <entry><para>total number of results</para></entry>
+            </row>
+            
+            <row>
+              <entry>has_more</entry>
+              <entry><link linkend="bool">bool</link></entry>
+              <entry></entry>
+              <entry><para>true if there are more results for the ProfileListRequest</para></entry>
+            </row>
+            
+            <row>
+              <entry>profiles</entry>
+              <entry><link linkend="grpc.gomeetexamples.apigateway.ProfileInfo">ProfileInfo</link></entry>
+              <entry>repeated</entry>
+              <entry><para>list of ProfileInfo messages</para></entry>
+            </row>
+            
+          </tbody>
+        </tgroup>
+      </table>
+      
+      
+    </section>
+    
+    <section id="grpc.gomeetexamples.apigateway.ProfileListRequest">
+      <title>ProfileListRequest</title>
+      <para>ProfileListRequest encodes a set of criteria for the retrieval of a list of profiles.</para>
+      
+      <table frame="all">
+        <title><classname>ProfileListRequest</classname> Fields</title>
+        <tgroup cols="4">
+          <colspec colwidth="*"/>
+          <colspec colwidth="*"/>
+          <colspec colwidth="0.5*"/>
+          <colspec colwidth="3*"/>
+          <thead>
+            <row>
+              <entry>Field</entry>
+              <entry>Type</entry>
+              <entry>Label</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            
+            <row>
+              <entry>page_number</entry>
+              <entry><link linkend="uint32">uint32</link></entry>
+              <entry></entry>
+              <entry><para>page number (starting from 1)</para></entry>
+            </row>
+            
+            <row>
+              <entry>page_size</entry>
+              <entry><link linkend="uint32">uint32</link></entry>
+              <entry></entry>
+              <entry><para>number of results in a page</para></entry>
+            </row>
+            
+            <row>
+              <entry>order</entry>
+              <entry><link linkend="string">string</link></entry>
+              <entry></entry>
+              <entry><para>result ordering specification (default "created_at asc")</para></entry>
+            </row>
+            
+            <row>
+              <entry>exclude_soft_deleted</entry>
+              <entry><link linkend="bool">bool</link></entry>
+              <entry></entry>
+              <entry><para>if true, excludes logically-deleted profiles from the result set</para></entry>
+            </row>
+            
+            <row>
+              <entry>soft_deleted_only</entry>
+              <entry><link linkend="bool">bool</link></entry>
+              <entry></entry>
+              <entry><para>if true, restricts the result set to logically-deleted profiles</para></entry>
+            </row>
+            
+            <row>
+              <entry>gender</entry>
+              <entry><link linkend="grpc.gomeetexamples.apigateway.Genders">Genders</link></entry>
+              <entry></entry>
+              <entry><para>role to search for</para></entry>
+            </row>
+            
+          </tbody>
+        </tgroup>
+      </table>
+      
+      
+    </section>
+    
+    <section id="grpc.gomeetexamples.apigateway.ProfileRequest">
+      <title>ProfileRequest</title>
+      <para>ProfileRequest encodes a profile identifier.</para>
+      
+      <table frame="all">
+        <title><classname>ProfileRequest</classname> Fields</title>
+        <tgroup cols="4">
+          <colspec colwidth="*"/>
+          <colspec colwidth="*"/>
+          <colspec colwidth="0.5*"/>
+          <colspec colwidth="3*"/>
+          <thead>
+            <row>
+              <entry>Field</entry>
+              <entry>Type</entry>
+              <entry>Label</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            
+            <row>
+              <entry>uuid</entry>
+              <entry><link linkend="string">string</link></entry>
+              <entry></entry>
+              <entry><para>profile ID</para></entry>
+            </row>
+            
+          </tbody>
+        </tgroup>
+      </table>
+      
+      
+    </section>
+    
+    <section id="grpc.gomeetexamples.apigateway.ProfileResponse">
+      <title>ProfileResponse</title>
+      <para>ProfileResponse encodes the result of a profile operation.</para>
+      
+      <table frame="all">
+        <title><classname>ProfileResponse</classname> Fields</title>
+        <tgroup cols="4">
+          <colspec colwidth="*"/>
+          <colspec colwidth="*"/>
+          <colspec colwidth="0.5*"/>
+          <colspec colwidth="3*"/>
+          <thead>
+            <row>
+              <entry>Field</entry>
+              <entry>Type</entry>
+              <entry>Label</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            
+            <row>
+              <entry>ok</entry>
+              <entry><link linkend="bool">bool</link></entry>
+              <entry></entry>
+              <entry><para>indicates whether the operation (authentication, creation, update or delete) was successful</para></entry>
+            </row>
+            
+            <row>
+              <entry>info</entry>
+              <entry><link linkend="grpc.gomeetexamples.apigateway.ProfileInfo">ProfileInfo</link></entry>
+              <entry></entry>
+              <entry><para>profile information (unreliable if the operation failed)</para></entry>
+            </row>
+            
+          </tbody>
+        </tgroup>
+      </table>
       
       
     </section>
@@ -231,6 +567,47 @@
     </section>
     
     
+    <section id="grpc.gomeetexamples.apigateway.Genders">
+      <title>Genders</title>
+      <para></para>
+      <table frame="all">
+        <title><classname>Genders</classname> Values</title>
+        <tgroup cols="3">
+          <colspec colwidth="*"/>
+          <colspec colwidth="*"/>
+          <colspec colwidth="3*"/>
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Number</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            
+            <row>
+              <entry>UNKNOW</entry>
+              <entry>0</entry>
+              <entry><para>normaly never</para></entry>
+            </row>
+            
+            <row>
+              <entry>MALE</entry>
+              <entry>1</entry>
+              <entry><para>male gender</para></entry>
+            </row>
+            
+            <row>
+              <entry>FEMALE</entry>
+              <entry>2</entry>
+              <entry><para>female gender</para></entry>
+            </row>
+            
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+    
     <section id="grpc.gomeetexamples.apigateway.ServiceStatus.Status">
       <title>ServiceStatus.Status</title>
       <para></para>
@@ -308,7 +685,42 @@
               <entry>Echo</entry>
               <entry><link linkend="grpc.gomeetexamples.apigateway.EchoRequest">EchoRequest</link></entry>
               <entry><link linkend="grpc.gomeetexamples.apigateway.EchoResponse">EchoResponse</link></entry>
-              <entry><para>Echo method receives a simple message and returns it.</para></entry>
+              <entry><para>Echo method receives a simple message and returns it from svc-echo.</para></entry>
+            </row>
+            
+            <row>
+              <entry>CreateProfile</entry>
+              <entry><link linkend="grpc.gomeetexamples.apigateway.ProfileCreationRequest">ProfileCreationRequest</link></entry>
+              <entry><link linkend="grpc.gomeetexamples.apigateway.ProfileResponse">ProfileResponse</link></entry>
+              <entry><para>CreateProfile attempts to create a new profile via svc-profile.</para></entry>
+            </row>
+            
+            <row>
+              <entry>ReadProfile</entry>
+              <entry><link linkend="grpc.gomeetexamples.apigateway.ProfileRequest">ProfileRequest</link></entry>
+              <entry><link linkend="grpc.gomeetexamples.apigateway.ProfileInfo">ProfileInfo</link></entry>
+              <entry><para>ReadProfile returns information about an existing profile via svc-profile.</para></entry>
+            </row>
+            
+            <row>
+              <entry>ListProfile</entry>
+              <entry><link linkend="grpc.gomeetexamples.apigateway.ProfileListRequest">ProfileListRequest</link></entry>
+              <entry><link linkend="grpc.gomeetexamples.apigateway.ProfileList">ProfileList</link></entry>
+              <entry><para>ListProfile returns a list of profiles matching a set of criteria via svc-profile.</para></entry>
+            </row>
+            
+            <row>
+              <entry>UpdateProfile</entry>
+              <entry><link linkend="grpc.gomeetexamples.apigateway.ProfileInfo">ProfileInfo</link></entry>
+              <entry><link linkend="grpc.gomeetexamples.apigateway.ProfileResponse">ProfileResponse</link></entry>
+              <entry><para>UpdateProfile attempts to update an existing profile via svc-profile.</para></entry>
+            </row>
+            
+            <row>
+              <entry>DeleteProfile</entry>
+              <entry><link linkend="grpc.gomeetexamples.apigateway.ProfileRequest">ProfileRequest</link></entry>
+              <entry><link linkend="grpc.gomeetexamples.apigateway.ProfileResponse">ProfileResponse</link></entry>
+              <entry><para>DeleteProfile attempts to delete (logically) an existing profile via svc-profile.</para></entry>
             </row>
             
           </tbody>

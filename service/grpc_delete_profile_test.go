@@ -4,6 +4,6 @@ import (
 	"testing"
 )
 
-func TestEcho(t *testing.T) {
+func TestDeleteProfile(t *testing.T) {
 	// TODO
 }

@@ -23,7 +23,7 @@ swagger = `{
   "paths": {
     "/api/v1/echo": {
       "post": {
-        "summary": "Echo method receives a simple message and returns it.",
+        "summary": "Echo method receives a simple message and returns it from svc-echo.",
         "operationId": "Echo",
         "responses": {
           "200": {
@@ -40,6 +40,141 @@ swagger = `{
             "required": true,
             "schema": {
               "$ref": "#/definitions/apigatewayEchoRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ApiGateway"
+        ]
+      }
+    },
+    "/api/v1/profile/create": {
+      "post": {
+        "summary": "CreateProfile attempts to create a new profile via svc-profile.",
+        "operationId": "CreateProfile",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/apigatewayProfileResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apigatewayProfileCreationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ApiGateway"
+        ]
+      }
+    },
+    "/api/v1/profile/delete": {
+      "post": {
+        "summary": "DeleteProfile attempts to delete (logically) an existing profile via svc-profile.",
+        "operationId": "DeleteProfile",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/apigatewayProfileResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apigatewayProfileRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ApiGateway"
+        ]
+      }
+    },
+    "/api/v1/profile/list": {
+      "post": {
+        "summary": "ListProfile returns a list of profiles matching a set of criteria via svc-profile.",
+        "operationId": "ListProfile",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/apigatewayProfileList"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apigatewayProfileListRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ApiGateway"
+        ]
+      }
+    },
+    "/api/v1/profile/read": {
+      "post": {
+        "summary": "ReadProfile returns information about an existing profile via svc-profile.",
+        "operationId": "ReadProfile",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/apigatewayProfileInfo"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apigatewayProfileRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ApiGateway"
+        ]
+      }
+    },
+    "/api/v1/profile/update": {
+      "post": {
+        "summary": "UpdateProfile attempts to update an existing profile via svc-profile.",
+        "operationId": "UpdateProfile",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/apigatewayProfileResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apigatewayProfileInfo"
             }
           }
         ],
@@ -115,6 +250,133 @@ swagger = `{
         }
       },
       "description": "EchoResponse represents a simple message that the Echo service return."
+    },
+    "apigatewayGenders": {
+      "type": "string",
+      "enum": [
+        "UNKNOW",
+        "MALE",
+        "FEMALE"
+      ],
+      "default": "UNKNOW"
+    },
+    "apigatewayProfileCreationRequest": {
+      "type": "object",
+      "properties": {
+        "gender": {
+          "$ref": "#/definitions/apigatewayGenders"
+        },
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "birthday": {
+          "type": "string"
+        }
+      },
+      "description": "ProfileCreationRequest encodes a profile creation request."
+    },
+    "apigatewayProfileInfo": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string"
+        },
+        "gender": {
+          "$ref": "#/definitions/apigatewayGenders"
+        },
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "birthday": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "deleted_at": {
+          "type": "string"
+        }
+      },
+      "description": "ProfileInfo encodes information about a profile."
+    },
+    "apigatewayProfileList": {
+      "type": "object",
+      "properties": {
+        "result_set_size": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "has_more": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "profiles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apigatewayProfileInfo"
+          }
+        }
+      },
+      "description": "ProfileList encodes the result of a ProfileListRequest."
+    },
+    "apigatewayProfileListRequest": {
+      "type": "object",
+      "properties": {
+        "page_number": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "page_size": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "order": {
+          "type": "string"
+        },
+        "exclude_soft_deleted": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "soft_deleted_only": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "gender": {
+          "$ref": "#/definitions/apigatewayGenders"
+        }
+      },
+      "description": "ProfileListRequest encodes a set of criteria for the retrieval of a list of profiles."
+    },
+    "apigatewayProfileRequest": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string"
+        }
+      },
+      "description": "ProfileRequest encodes a profile identifier."
+    },
+    "apigatewayProfileResponse": {
+      "type": "object",
+      "properties": {
+        "ok": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "info": {
+          "$ref": "#/definitions/apigatewayProfileInfo"
+        }
+      },
+      "description": "ProfileResponse encodes the result of a profile operation."
     },
     "apigatewayServiceStatus": {
       "type": "object",

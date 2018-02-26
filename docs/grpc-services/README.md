@@ -7,10 +7,17 @@
     - [EchoRequest](#grpc.gomeetexamples.apigateway.EchoRequest)
     - [EchoResponse](#grpc.gomeetexamples.apigateway.EchoResponse)
     - [EmptyMessage](#grpc.gomeetexamples.apigateway.EmptyMessage)
+    - [ProfileCreationRequest](#grpc.gomeetexamples.apigateway.ProfileCreationRequest)
+    - [ProfileInfo](#grpc.gomeetexamples.apigateway.ProfileInfo)
+    - [ProfileList](#grpc.gomeetexamples.apigateway.ProfileList)
+    - [ProfileListRequest](#grpc.gomeetexamples.apigateway.ProfileListRequest)
+    - [ProfileRequest](#grpc.gomeetexamples.apigateway.ProfileRequest)
+    - [ProfileResponse](#grpc.gomeetexamples.apigateway.ProfileResponse)
     - [ServiceStatus](#grpc.gomeetexamples.apigateway.ServiceStatus)
     - [ServicesStatusList](#grpc.gomeetexamples.apigateway.ServicesStatusList)
     - [VersionResponse](#grpc.gomeetexamples.apigateway.VersionResponse)
   
+    - [Genders](#grpc.gomeetexamples.apigateway.Genders)
     - [ServiceStatus.Status](#grpc.gomeetexamples.apigateway.ServiceStatus.Status)
   
   
@@ -37,7 +44,7 @@ EchoRequest represents a simple message sent to the Echo service.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | uuid | [string](#string) |  | Uuid represents the message identifier. |
-| content | [string](#string) |  | some content |
+| content | [string](#string) |  | some content // note : lorem.string =&gt; generate a random sentence 3 to 11 words in length |
 
 
 
@@ -64,6 +71,114 @@ EchoResponse represents a simple message that the Echo service return.
 
 ### EmptyMessage
 
+
+
+
+
+
+
+<a name="grpc.gomeetexamples.apigateway.ProfileCreationRequest"/>
+
+### ProfileCreationRequest
+ProfileCreationRequest encodes a profile creation request.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| gender | [Genders](#grpc.gomeetexamples.apigateway.Genders) |  | profile role |
+| email | [string](#string) |  | profile email |
+| name | [string](#string) |  | profile name |
+| birthday | [string](#string) |  | profile birthday |
+
+
+
+
+
+
+<a name="grpc.gomeetexamples.apigateway.ProfileInfo"/>
+
+### ProfileInfo
+ProfileInfo encodes information about a profile.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uuid | [string](#string) |  | internal profile ID |
+| gender | [Genders](#grpc.gomeetexamples.apigateway.Genders) |  | profile role |
+| email | [string](#string) |  | profile email |
+| name | [string](#string) |  | profile name |
+| birthday | [string](#string) |  | profile birthday |
+| created_at | [string](#string) |  | creation time (UTC - RFC 3339 format) |
+| updated_at | [string](#string) |  | modification time (UTC - RFC 3339 format) |
+| deleted_at | [string](#string) |  | deletion time (UTC - RFC 3339 format if the profile was logically deleted, empty otherwise) |
+
+
+
+
+
+
+<a name="grpc.gomeetexamples.apigateway.ProfileList"/>
+
+### ProfileList
+ProfileList encodes the result of a ProfileListRequest.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| result_set_size | [uint32](#uint32) |  | total number of results |
+| has_more | [bool](#bool) |  | true if there are more results for the ProfileListRequest |
+| profiles | [ProfileInfo](#grpc.gomeetexamples.apigateway.ProfileInfo) | repeated | list of ProfileInfo messages |
+
+
+
+
+
+
+<a name="grpc.gomeetexamples.apigateway.ProfileListRequest"/>
+
+### ProfileListRequest
+ProfileListRequest encodes a set of criteria for the retrieval of a list of profiles.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page_number | [uint32](#uint32) |  | page number (starting from 1) |
+| page_size | [uint32](#uint32) |  | number of results in a page |
+| order | [string](#string) |  | result ordering specification (default &#34;created_at asc&#34;) |
+| exclude_soft_deleted | [bool](#bool) |  | if true, excludes logically-deleted profiles from the result set |
+| soft_deleted_only | [bool](#bool) |  | if true, restricts the result set to logically-deleted profiles |
+| gender | [Genders](#grpc.gomeetexamples.apigateway.Genders) |  | role to search for |
+
+
+
+
+
+
+<a name="grpc.gomeetexamples.apigateway.ProfileRequest"/>
+
+### ProfileRequest
+ProfileRequest encodes a profile identifier.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uuid | [string](#string) |  | profile ID |
+
+
+
+
+
+
+<a name="grpc.gomeetexamples.apigateway.ProfileResponse"/>
+
+### ProfileResponse
+ProfileResponse encodes the result of a profile operation.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ok | [bool](#bool) |  | indicates whether the operation (authentication, creation, update or delete) was successful |
+| info | [ProfileInfo](#grpc.gomeetexamples.apigateway.ProfileInfo) |  | profile information (unreliable if the operation failed) |
 
 
 
@@ -121,6 +236,19 @@ VersionMessage represents a version message
  
 
 
+<a name="grpc.gomeetexamples.apigateway.Genders"/>
+
+### Genders
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| UNKNOW | 0 | normaly never |
+| MALE | 1 | male gender |
+| FEMALE | 2 | female gender |
+
+
+
 <a name="grpc.gomeetexamples.apigateway.ServiceStatus.Status"/>
 
 ### ServiceStatus.Status
@@ -146,7 +274,12 @@ VersionMessage represents a version message
 | ----------- | ------------ | ------------- | ------------|
 | Version | [EmptyMessage](#grpc.gomeetexamples.apigateway.EmptyMessage) | [VersionResponse](#grpc.gomeetexamples.apigateway.EmptyMessage) | Version method receives no paramaters and returns a version message. |
 | ServicesStatus | [EmptyMessage](#grpc.gomeetexamples.apigateway.EmptyMessage) | [ServicesStatusList](#grpc.gomeetexamples.apigateway.EmptyMessage) | ServicesStatus method receives no paramaters and returns all services status message |
-| Echo | [EchoRequest](#grpc.gomeetexamples.apigateway.EchoRequest) | [EchoResponse](#grpc.gomeetexamples.apigateway.EchoRequest) | Echo method receives a simple message and returns it. |
+| Echo | [EchoRequest](#grpc.gomeetexamples.apigateway.EchoRequest) | [EchoResponse](#grpc.gomeetexamples.apigateway.EchoRequest) | Echo method receives a simple message and returns it from svc-echo. |
+| CreateProfile | [ProfileCreationRequest](#grpc.gomeetexamples.apigateway.ProfileCreationRequest) | [ProfileResponse](#grpc.gomeetexamples.apigateway.ProfileCreationRequest) | CreateProfile attempts to create a new profile via svc-profile. |
+| ReadProfile | [ProfileRequest](#grpc.gomeetexamples.apigateway.ProfileRequest) | [ProfileInfo](#grpc.gomeetexamples.apigateway.ProfileRequest) | ReadProfile returns information about an existing profile via svc-profile. |
+| ListProfile | [ProfileListRequest](#grpc.gomeetexamples.apigateway.ProfileListRequest) | [ProfileList](#grpc.gomeetexamples.apigateway.ProfileListRequest) | ListProfile returns a list of profiles matching a set of criteria via svc-profile. |
+| UpdateProfile | [ProfileInfo](#grpc.gomeetexamples.apigateway.ProfileInfo) | [ProfileResponse](#grpc.gomeetexamples.apigateway.ProfileInfo) | UpdateProfile attempts to update an existing profile via svc-profile. |
+| DeleteProfile | [ProfileRequest](#grpc.gomeetexamples.apigateway.ProfileRequest) | [ProfileResponse](#grpc.gomeetexamples.apigateway.ProfileRequest) | DeleteProfile attempts to delete (logically) an existing profile via svc-profile. |
 
  
 

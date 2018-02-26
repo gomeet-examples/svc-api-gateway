@@ -4,6 +4,6 @@ import (
 	"testing"
 )
 
-func TestEcho(t *testing.T) {
+func TestListProfile(t *testing.T) {
 	// TODO
 }

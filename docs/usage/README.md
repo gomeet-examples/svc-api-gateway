@@ -23,6 +23,11 @@ svc-api-gateway help serve
   $ svc-api-gateway cli version
   $ svc-api-gateway cli services_status
   $ svc-api-gateway cli echo <uuid [string]> <content [string]>
+  $ svc-api-gateway cli create_profile <gender [UNKNOW|MALE|FEMALE]> <email [string]> <name [string]> <birthday [string]>
+  $ svc-api-gateway cli read_profile <uuid [string]>
+  $ svc-api-gateway cli list_profile <page_number [uint32]> <page_size [uint32]> <order [string]> <exclude_soft_deleted [bool]> <soft_deleted_only [bool]> <gender [UNKNOW|MALE|FEMALE]>
+  $ svc-api-gateway cli update_profile <uuid [string]> <gender [UNKNOW|MALE|FEMALE]> <email [string]> <name [string]> <birthday [string]> <created_at [string]> <updated_at [string]> <deleted_at [string]>
+  $ svc-api-gateway cli delete_profile <uuid [string]>
   $ svc-api-gateway cli --address localhost:42000 version
 
   # more info
@@ -45,6 +50,21 @@ INFO[0002] HELP :
 
 	┌─ echo <uuid [string]> <content [string]>
 	└─ call echo service
+
+	┌─ create_profile <gender [UNKNOW|MALE|FEMALE]> <email [string]> <name [string]> <birthday [string]>
+	└─ call create_profile service
+
+	┌─ read_profile <uuid [string]>
+	└─ call read_profile service
+
+	┌─ list_profile <page_number [uint32]> <page_size [uint32]> <order [string]> <exclude_soft_deleted [bool]> <soft_deleted_only [bool]> <gender [UNKNOW|MALE|FEMALE]>
+	└─ call list_profile service
+
+	┌─ update_profile <uuid [string]> <gender [UNKNOW|MALE|FEMALE]> <email [string]> <name [string]> <birthday [string]> <created_at [string]> <updated_at [string]> <deleted_at [string]>
+	└─ call update_profile service
+
+	┌─ delete_profile <uuid [string]>
+	└─ call delete_profile service
 
 	┌─ service_address
 	└─ return service address
@@ -76,6 +96,11 @@ WARN[0003] Bad arguments : "unknow" unknow
   $ curl -X GET    http://localhost:13000/api/v1/version
   $ curl -X GET    http://localhost:13000/api/v1/services/status
   $ curl -X POST   http://localhost:13000/api/v1/echo -d '{"uuid": "<string>", "content": "<string>"}'
+  $ curl -X POST   http://localhost:13000/api/v1/profile/create -d '{"gender": "UNKNOW|MALE|FEMALE", "email": "<string>", "name": "<string>", "birthday": "<string>"}'
+  $ curl -X POST   http://localhost:13000/api/v1/profile/read -d '{"uuid": "<string>"}'
+  $ curl -X POST   http://localhost:13000/api/v1/profile/list -d '{"page_number": <number>, "page_size": <number>, "order": "<string>", "exclude_soft_deleted": <boolean>, "soft_deleted_only": <boolean>, "gender": "UNKNOW|MALE|FEMALE"}'
+  $ curl -X POST   http://localhost:13000/api/v1/profile/update -d '{"uuid": "<string>", "gender": "UNKNOW|MALE|FEMALE", "email": "<string>", "name": "<string>", "birthday": "<string>", "created_at": "<string>", "updated_at": "<string>", "deleted_at": "<string>"}'
+  $ curl -X POST   http://localhost:13000/api/v1/profile/delete -d '{"uuid": "<string>"}'
   $ curl -X GET    http://localhost:13000/
   $ curl -X GET    http://localhost:13000/version
   $ curl -X GET    http://localhost:13000/metrics

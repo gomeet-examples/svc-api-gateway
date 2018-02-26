@@ -14,6 +14,21 @@ func (c *remoteCli) cmdHelp(args []string) (string, error) {
 	┌─ echo <uuid [string]> <content [string]>
 	└─ call echo service
 
+	┌─ create_profile <gender [UNKNOW|MALE|FEMALE]> <email [string]> <name [string]> <birthday [string]>
+	└─ call create_profile service
+
+	┌─ read_profile <uuid [string]>
+	└─ call read_profile service
+
+	┌─ list_profile <page_number [uint32]> <page_size [uint32]> <order [string]> <exclude_soft_deleted [bool]> <soft_deleted_only [bool]> <gender [UNKNOW|MALE|FEMALE]>
+	└─ call list_profile service
+
+	┌─ update_profile <uuid [string]> <gender [UNKNOW|MALE|FEMALE]> <email [string]> <name [string]> <birthday [string]> <created_at [string]> <updated_at [string]> <deleted_at [string]>
+	└─ call update_profile service
+
+	┌─ delete_profile <uuid [string]>
+	└─ call delete_profile service
+
 	┌─ service_address
 	└─ return service address
 
