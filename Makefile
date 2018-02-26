@@ -197,6 +197,7 @@ package-clean:
 .PHONY: package-proto
 package-proto:
 	@echo "$(NAME): package-proto task"
+	mkdir -p $(PACKAGE_DIR)
 	cp -r third_party $(PACKAGE_DIR)/proto
 	cp $(GO_PROTO_PACKAGE_ALIAS)/*.proto $(PACKAGE_DIR)/proto/
 	cp VERSION $(PACKAGE_DIR)/proto/
@@ -369,7 +370,7 @@ test: build
 	@cd service && go test
 	@if [ -f $(GO_PROTO_PACKAGE_ALIAS)/*_test.go ]; then cd pb && go test; fi
 	@_build/$(NAME) functest -e --random-port
-	
+
 .PHONY: docker-test
 docker-test: docker
 	docker run -v $(shell pwd):/go/src/$(GO_PACKAGE_NAME) --rm golang:1.8.3-alpine3.6 /bin/sh -c "cd /go/src/$(GO_PACKAGE_NAME)/service && go test"

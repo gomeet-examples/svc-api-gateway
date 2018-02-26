@@ -53,5 +53,5 @@ data/certs
 _tools/protoc
 
 # local build (ndlr. make)
-_build/svc-api-gateway
-
+_build
+.env
